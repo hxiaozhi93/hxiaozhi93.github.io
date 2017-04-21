@@ -54,7 +54,79 @@
 </header>
 <article class="js_article">
     <p>待续。。。。。。</p>
- 
+
+<hr />
+
+<p>(1)git基本内容与命令：</p>
+<p>Windows：安装msysgit,打开git bash进行设置</p>
+<p>git config --global user.name “your name” ，git config --global user.email "your email"</p>
+<p>创建一个目录如gittest，然后把这个目录变成仓库，git init</p>
+<p>输入ls -ah 可看到目录下多了.git</p>
+<p>在目录下，编写一个readme.txt 文件</p>
+<p>把文件添加到仓库，git add readme.txt</p>
+<p>把文件提交到仓库，git commit -m "write a readme.txt"</p>
+<p>查看当前仓库状态：git status</p>
+<p>查看修改状态：git diff</p>
+<p>查看历史记录：git log</p>
+<p>查看并简洁显示：git log --pretty=oneline</p>
+<p>记录每一次命令：git reflog</p>
+<p>回退到上一个版本：git reset --hard HEAD^</p>
+<p>回到未来版本：git reset --hard 版本id号</p>
+<p>丢弃工作区的修改：git checkout --file</p>
+<p>撤销暂存区修改：git reset HEAD file</p>
+<p>别名： git config --global alias.co checkout</p>
+<p>查看配置： git config -l</p>
+<p>暂存当前没有提交的代码： git stash</p>
+<p>还原之前的代码： git stash apply</p>
+<p>删除stash记录： git stash drop/pop/clear</p>
+
+<hr />
+
+<p>(2)分支</p>
+<p>创建分支a: git branch a</p>
+<p>查看分支： git branch</p>
+<p>切换到分支a：git checkout a</p>
+<p>把a分支内容合并到master： 先切回到master，然后 git merge a</p>
+<p>删除a分支： git branch -d a</p>
+<p>打标签： git tag name</p>
+<p>查看标签： git tag</p>
+<p>查看标签信息：git show tagname</p>
+
+<hr />
+
+<p>(3)远程仓库</p>
+<p>GitHub：提供Git仓库托管服务</p>
+<p>创建SSH Key：ssh-keygen -t rsa -C "your email",然后一路回车</p>
+<p>生成.ssh文件，里面有id-rsa和id_rsa.pub</p>
+<p>登录GitHub，选择 Add SSH key，添加id_rsa.pub中的内容</p>
+<p>添加远程库：git remote add origin git@github.com:hxiaozhi93/hello-world</p>
+<p>git push -u origin master</p>
+
+
+
+<hr />
+
+<p>(4)从自己的github上clone内容到本地，修改后上传回到github：</p>
+<p>首先在本地建立文件夹，如f://myclone</p>
+<p>再打开Git Bash，输入cd f://myclone</p>
+<p>再输入自己的github地址，如git clone https://github.com/hxiaozhi93/hello-world</p>
+<p>再输入cd hello-world,接着修改hello-world文件内容</p>
+<p>再输入git add .</p>
+<p>再输入git commit -m "change hello-world"</p>
+<p>再输入git push origin master</p>
+<p>查看github上的hello-world文件内容，可发现内容已经修改</p>
+
+<hr />
+
+<p>(5)Markdown</p>
+<p>加粗：**bold**</p>
+<p>倾斜：*italic*</p>
+<p>链接：[baidu](https://www.baidu.com)</p>
+<p>不同级别标题：#，#，###</p>
+<p>表情：比如 :boom:  ,  :camel:  </p>
+<p>插入图片： ！[image]() </p>
+<p>代码段： ```  ```  ,语法高亮： ```java   ```</p>
+<p>......</p>
 
 <hr />
 
