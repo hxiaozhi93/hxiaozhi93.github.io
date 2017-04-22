@@ -67,6 +67,22 @@
 
 <p>Linux命令</p>
 <p>。。。。。。</p>
+<p>此处略去数千Linux命令</p>
+<p>history:查看最近执行的命令</p>
+<p>ifconfig:interfaces config,查看网络ip情况，注不同于windows下的ipconfig</p>
+<p>ps：显示进程信息，top：动态显示进程信息</p>
+
+<hr />
+
+<p>ls -h中显示的内容:</p>
+<p>例如-rwxrw-r-- 1 root root 1213 Feb 2 09:39 abc</p>
+<p>10个字符代表不同用户能对文件做什么</p>
+<p>第一个字符代表文件类型，如-代表文件，d代表目录，l代表链接</p>
+<p>其余字符每三个一组：第一组rwx代表文件所有者的权限是读写执行，第二组rw-代表与文件所有者同一组的用户的权限是读写但不能执行，第三组r--代表不与文件所有者同组的其他用户的权限是读但不能写和执行</p>
+<p>可用数字表示为：r=4，w=2，x=1，因此rwx=4+2+1=7</p>
+<p>例如改变文件或目录权限：chmod 777 filename（代表filename权限为rwxrwxrwx）</p>
+<p>root代表用户， root代表组，1213代表文件大小（字节），Feb 2 09:39代表最后修改日期，abc代表文件名</p>
+
 
 <hr />
 
@@ -76,9 +92,48 @@
 
 <hr />
 
+<p>Linux启动过程分析</p>
+<p>BIOS自检；启动GRUB/LILO；运行LINUX内核并检查硬件；运行系统的第一个进程init；
+init读取系统引导配置文件/etc/inittab中的信息进行初始化；/etc/rc.d/rc.sysinit系统初始化脚本；/etc/rc.d/rcX.d/[KS]*-根据运行级别X配置服务，终止以“K”开头的服务，启动以“S
+”开头的服务；/etc/rc.d/rc.local执行本地特殊配置；其他特殊服务......</p>
+<hr />
 <p>Ubuntu</p>
 <p>包管理系统：dpkg，APT，Gdebi</p>
 <p>......</p>
+
+<hr />
+<p>samba服务</p>
+<p>windows和Linux之间实现资源共享</p>
+<p>SMB通信协议采用的是C/S结构，SAMBA软件可分客户端及服务端两部分，通过执行SAMBA客户端程序，LINUX主机便可使用网络上的WINDOWS主机所共享的资源。而在LINUX主机上安装SAMBA服务器，则可以使用WINDOWS主机访问SAMBA服务器共享的资源</p>
+
+
+
+<hr />
+
+<p>压缩与解压</p>
+<p>zip</p>
+
+<hr />
+
+<p>shell</p>
+<p>将命令解释成内核可以执行的代码</p>
+
+<hr />
+
+<p>任务调度：系统在某个时间执行特定的命令或程序</p>
+<p>分类：系统工作和个别用户工作</p>
+<p>任务调度的使用crontab</p>
+
+
+<hr />
+
+<p>Mysql数据库</p>
+
+
+<hr />
+
+<p>ssh(secure shell)</p>
+<p>其为一款集远程操作Linux和进行文件上传和下载的软件</p>
 
 <hr />
 
