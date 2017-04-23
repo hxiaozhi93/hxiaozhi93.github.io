@@ -98,6 +98,19 @@ init读取系统引导配置文件/etc/inittab中的信息进行初始化；/etc
 ”开头的服务；/etc/rc.d/rc.local执行本地特殊配置；其他特殊服务......</p>
 <hr />
 <p>Ubuntu</p>
+<p>Linux的特点:免费、开源、共享，系统稳定，安全</p>
+<p>Linux与Windows的不同点：模块化结构，软件安装，文件系统</p>
+<p>通常称呼的Linux指代的是操作系统内核，而Linux内核和各类应用软件一起构成了一个完整的计算机操作系统。Linux发行版就是内核和应用软件结合的杰作。</p>
+<p>Shell是Linux中的一个命令行解释器，是和Linux内核交流的桥梁。</p>
+<p>BASH Shell是Shell的一种。Ubuntu操作系统默认使用的Shell是BASH Shell。当BASH Shell和DOS命令比较时会发现，和DOS一样，BASH Shell直接从键盘接收指令，再传递这些指令到操作系统内核。最大的不同是，BASH Shell可以在系统上做一切用户想做的事，而DOS很局限，基本只能做和文件、目录有关的事。用上下方向键寻找已经输入过的命令，当输入一个命令的前面几个字符时敲击键盘的Tab键，系统会对该命令进行自动补全。
+</p>
+<p>dpkg、APT和Gdebi都是Ubuntu中的包管理工具，且来自于Linux的Debian发行版。
+新立得软件包管理工具提供了图形界面来管理软件包，是APT包管理工具的图形化界面。</p>
+<p>DHCP是动态主机配置协议（Dynamic Host Configuration Protocol）的缩写，由IETF（Internet 网络工程师任务小组）制定，协议的详尽内容在RFC文档rfc2131和rfc1541中描述。制定DHCP目的是为了减轻TCP/IP网络的规划、管理和维护的负担，解决IP地址空间缺乏等问题。在DHCP网络中，一般包含一台DHCP服务器和很多的客户端计算机。DHCP客户端为了获取一个合法的动态IP地址，需要与DHCP服务器交互。DHCP客户端首次登录网络时与DHCP服务器交互的4个阶段：寻找、供应、选择、确认。如果没有使用Ubuntu桌面环境，可以用命令行配置DHCP，让Ubuntu成为DHCP服务器。输入以下命令，编辑/etc/default/dhcp3-server文件，选择监听DHCP服务的网卡：sudo vi /etc/default/dhcp3-server
+。Ubuntu软件库提供了一款杰出的DHCP图形化管理工具，gdhcpd。
+</p>
+<p>Samba是种自由软件，用来让Linux操作系统与微软的Windows操作系统间共享资源。使用Samba目前的版本，不仅可以分享目录及打印机，还可以整合进入Windows服务器域，扮演域控制站的角色，以及成为Active Directory（活动目录）成员。简而言之，Samba在Linux与Windows之间搭起一座桥梁，让两者彼此分享资源。
+</p>
 <p>包管理系统：dpkg，APT，Gdebi</p>
 <p>......</p>
 
