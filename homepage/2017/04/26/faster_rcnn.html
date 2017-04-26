@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="faster rcnn" />
+    <meta name="description" content="Faster RCNN" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>小志同学 - Faster RCNN</title>
+    <link rel="shortcut icon" href="http://oij8a9ql4.bkt.clouddn.com/shortcut.ico" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/sunburst.min.css" />
+    <link rel="stylesheet/less" href="/homepage/assets/style/style.less" />
+    <script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+</head>
+<body>
+<script>
+    var pageData = {};
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?6b9830e6ab8073ce1a44ad49a03d8596';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<img src="http://oij8a9ql4.bkt.clouddn.com/portrait.jpg" alt="小志同学" width="0" height="0" />
+<nav>
+    <a href="javascript:;" class="js_menu_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <ul class="js_menu">
+        <li><a href="/homepage/">Home</a></li>
+        <li><a href="/homepage/views/posts" class="js_goto_posts">Posts</a></li>
+        <li><a href="/homepage/views/about">About</a></li>
+    </ul>
+</nav>
+<a href="javascript:;" class="gotop js_gotop"></a>
+<header class="post" style="background-image: url('http://oij8a9ql4.bkt.clouddn.com/banner.jpg')">
+    <div>
+        <h2>Faster RCNN</h2>
+        <time>26 Apr 2017</time>
+        <p class="abstract">实践出真知。Faster RCNN是目标检测领域极具代表性的方法。在此，尝试在Windows+CPU环境下调试Faster RCNN。</p>
+        <ul class="c-fix">
+            
+            <li>目标检测</li>
+                    
+            <li>Faster RCNN</li>
+
+            <li>Windows+CPU</li>
+            
+        </ul>
+    </div>
+</header>
+<article class="js_article">
+
+
+<hr />
+
+<p>代码来自：https://github.com/rbgirshick/py-faster-rcnn，caffe来自：https://github.com/Microsoft/caffe</p>
+<p>注：在之前已经在Windows+CPU环境下安装过微软官方版的caffe，并调试过Fast RCNN，在此方法中，会调用来自Fast RCNN的caffe-fast-rcnn。</p>
+<p>首先，在本地新建文件夹，如在F盘新建faster_rcnn</p>
+<p>再，打开Git Bash（Git相关内容参见博客Git，可在https://git-for-windows.github.io/下载），输入cd f://faster_rcnn，输入git clone --recursive https://github.com/rbgirshick/py-faster-rcnn.git，</p>
+<p>再，打开命令提示符cmd，输入f:，输入cd faster_rcnn/py-faster-rcnn，</p>
+<p>输入python tools/demo.py，出现错误“No module named _caffe”，因为编译调试过Fast RCNN，所以直接将来自Fast RCNN的caffe-fast-rcnn中的内容复制到py-faster-rcnn的caffe-fast-rcnn中。</p>
+<p>输入python tools/demo.py，出现错误“ImportError: No module named gpu_nms”，打开lib/fast_rcnn/nms_wrapper，注释掉其中和gpu相关的内容，注意最后一行的return cpu_nms(dets, thresh)要和之前的if对齐，继续修改from nms.cpu_nms import py_cpu_nms改为from nms.py_cpu_nms import py_cpu_nms，最后一行的return cpu_nms(dets, thresh)改为return py_cpu_nms(dets, thresh)。</p>
+<p>输入python tools/demo.py，出现错误“Did you run ./data/script/fetch_faster_rcnn_models.sh?”，发现没有已训练好的faster rcnn模型，因为是windows系统，无法直接运行.sh程序得到，因此可直接在网上搜取caffemodel资源，得到后在data下新建文件夹faster_rcnn_models，将下载得到的ZF_faster_rcnn_final.caffemodel和VGG16_faster_rcnn_final.caffemodel放入文件夹中。</p>
+<p>输入python tools/demo.py，出现错误“Cannot use GPU in CPU-only Caffe: check mode.”，因为是在CPU下运行demo，修改tools/demo.py，注释掉if args.cpu_mode:以及else的相关内容。</p>
+<p>输入python tools/demo.py，出现错误“AttributeError: 'ProposalLayer' object has no attribute 'param_str_'”，打开lib/rpn/proposal_layer.py,修改26行的self.param_str_为self.param_str。</p>
+<p>输入python tools/demo.py，出现错误“pre_nms_topN  = cfg[cfg_key].RPN_PRE_NMS_TOP_N  KeyError: '1'”，打开打开lib/rpn/proposal_layer.py,修改64行为cfg_key = str('TRAIN' if self.phase == 0 else 'TEST')。</p>
+<p>输入python tools/demo.py，然后电脑出现卡机状态，运行极慢，主要是因为在CPU下运行，而且CNN网络用的VGG16，因此为了运算速度着想，将参数--net中的vgg16改为zf，并且im_names只留下一个测试。</p>
+<p>输入python tools/demo.py，出现检测结果。在我的CPU状态下，结果为Detection took 4.877s for 300 object proposals。</p>
+
+ 
+
+<hr />
+
+
+
+<p>小白。勿念。</p>
+
+<hr />
+
+<p>作者：无名氏。</p>
+
+
+
+</article>
+<footer>
+    <a href="/homepage/views/posts" class="js_goto_posts">返回目录 - 痕迹</a>
+</footer>
+<div class="browser js_browser">
+    <img src="" />
+</div>
+
+<script src="/homepage/assets/script/main.js"></script>
+</body>
+</html>
