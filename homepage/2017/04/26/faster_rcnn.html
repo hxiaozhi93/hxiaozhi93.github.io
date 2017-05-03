@@ -50,6 +50,10 @@
             <li>Faster RCNN</li>
 
             <li>Windows+CPU</li>
+
+            <li>Python</li>
+
+            <li>MATLAB</li>
             
         </ul>
     </div>
@@ -79,7 +83,24 @@
 
 <hr />
 
+上面内容调试了Python版代码，下面内容调试MATLAB版代码。
 
+<hr />
+
+<p>代码来自https://github.com/ShaoqingRen/faster_rcnn</p>
+<p>下载代码，打开MATLAB。</p>
+<p>先运行fetch_data/fetch_caffe_mex_windows_vs2013_cuda65.m下载compiled mex file，出现下载错误“Error in downloading”，主要由于下载地址的问题，因此换百度云盘下载方式，打开https://pan.baidu.com/s/1i3m0i0H，下载文件caffe_mex，解压后将其中的matlab文件夹放入/external/caffe/下。</p>
+<p>再运行faster_rcnn_build.m，出现错误“错误使用 mex”，其与没有gpu和cuda有关，先不管这个错误。</p>
+<p>再运行startup.m，出现“fast_rcnn startup done”，初始化完成。</p>
+<p>再运行fetch_data/fetch_faster_rcnn_final_model.m下载训练好的模型，出现错误“Error in downloading”，主要由于下载地址的问题，因此换百度云盘下载方式，打开https://pan.baidu.com/s/1hsFKmeK，解压将其中的faster_rcnn_final复制到/output/下。</p>
+<p>再运行experiments/script_faster_rcnn_demo.m，出现错误“错误使用 gpuDevice”，注释掉第9、10行，将第十五行的true改为false。</p>
+<p>再运行experiments/script_faster_rcnn_demo.m，出现错误“caffe_.mexw64: 找不到指定的模块”，在之前编译过的微软官方caffe目录microsoft\caffe-master\Build\x64\Release\matcaffe\+caffe\private下，复制其中的caffe_.mexw64，替换\external\caffe\matlab\caffe_faster_rcnn下的caffe_.mexw64。</p>
+<p>再运行experiments/script_faster_rcnn_demo.m，出现错误“错误使用 imread，图片不存在”，且电脑极卡。因为在CPU下运行VGG模型，所以将第20行使用VGG16模型注释掉，并解除21行使用ZF模型的注释。在之前https://pan.baidu.com/s/1hsFKmeK下载中，将其中的图片复制到目录faster_rcnn-master下。</p>
+<p>再运行experiments/script_faster_rcnn_demo.m，出现类似“001763.jpg (500x375): time 3.859s (resize+conv+proposal: 2.980s, nms+regionwise: 0.879s)”的5张图片检测结果。</p>
+<p></p>
+
+
+<hr />
 
 <p>小白。勿念。</p>
 
