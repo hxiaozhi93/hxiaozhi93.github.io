@@ -70,6 +70,14 @@
 
 <hr />
 
+<p>AI(e.g. knowledge bases)/machine learning(e.g. logistic regression)/representation learning(e.g. autoencoders)/deep learning(e.g. MLPs)</p>
+<p>rule-based systems：input/hand-designed program/output</p>
+<p>classic machine learning:input/hand-designed features/mapping from features/output</p>
+<p>representation learning:input/features/mapping from features/output</p>
+<p>deep learning:input/simplest features/most complex features/mapping from features/output</p>
+
+<hr />
+
 <p>小批量随机梯度下降？</p>
 <p>因为在大规模数据的训练中，训练数据可达百万级，这样更新参数笨重，常用方法就是利用训练集中的一小部分数据来更新参数。实际情况中，数据集不会包含重复图像，小批量数据的梯度就是对整个数据集梯度的一个近似。因此，实践中通过小批量数据的梯度可以实现更快的收敛，从此来进行更频繁的参数更新。</p>
 <p>前向传播阶段，数据源起于数据读取层，经过若干处理层，得到逐层输出，最后一层与目标函数比较得到损失函数。损失函数在前向传播中计算得到，同时也是反向传播的起点。误差函数衡量模型预测值与真实值之间的差距，差距越大，代价越大，从而对模型参数优化起到指引作用。误差函数表征真实值与模型预测值之间的差异，还要不断更改模型参数，使得差异越来越小，这个过程就是最优化，使用梯度下降法。</p>

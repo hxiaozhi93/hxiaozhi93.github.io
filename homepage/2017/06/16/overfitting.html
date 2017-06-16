@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="overfitting" />
+    <meta name="description" content="overfitting" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>小志同学 - overfitting</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/sunburst.min.css" />
+    <link rel="stylesheet/less" href="/homepage/assets/style/style.less" />
+    <script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+</head>
+<body>
+<script>
+    var pageData = {};
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?6b9830e6ab8073ce1a44ad49a03d8596';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<img src="http://oij8a9ql4.bkt.clouddn.com/portrait.jpg" alt="小志同学" width="0" height="0" />
+<nav>
+    <a href="javascript:;" class="js_menu_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <ul class="js_menu">
+        <li><a href="/homepage/">Home</a></li>
+        <li><a href="/homepage/views/posts" class="js_goto_posts">Posts</a></li>
+        <li><a href="/homepage/views/about">About</a></li>
+    </ul>
+</nav>
+<a href="javascript:;" class="gotop js_gotop"></a>
+<header class="post" style="background-image: url('http://oij8a9ql4.bkt.clouddn.com/banner.jpg')">
+    <div>
+        <h2>overfitting</h2>
+        <time>16 Jun 2017</time>
+        <p class="abstract">overfitting：即在训练集上表现好，但不能泛化到测试集上。采用regularization，dropout等方法</p>
+        <ul class="c-fix">
+            
+                    <li>overfitting</li>
+
+                    <li>dropout</li>
+
+                    <li>regularization</li> 
+            
+        </ul>
+    </div>
+</header>
+<article class="js_article">
+
+
+<hr />
+
+<p>来自于麦子学院课程</p>
+<p>overfitting：含义，在训练集上表现好，但不能泛化到测试集上，测试集表现不好。</p>
+<p>减小神经网络的规模，但是更深层更大的网络潜在有更强的学习能力。</p>
+<p>regularization：L1，L2（weight decay）,加入regularization，减小overfitting，增加accuracy，避免陷入local minimum，更易重现实验。</p>
+<p>神经网络中，regularized网络更鼓励小的权重，小的权重情况下，x一些随机的变化不会对神经网络的模型造成太大影响，所以更小可能受到数据局部噪音的影响。</p>
+<p>un-regularized神经网络，权重更大，容易通过神经网络模型比较大的改变来适应数据，更容易学习到局部数据的噪音。</p>
+<p>regularized更倾向于学习到更简单一些的模型。</p>
+<p>L1和L2对比：L1减小一个常量，L2较少权重的一个固定比例。如果权重本身比较大，L1较少的比L2少很多。如果权重本身比较小，L1减少的更多。L1倾向于集中在少部分重要的连接上。</p>
+<p>dropout，和L1L2 regularization不同，不是针对cost函数增加一项，而是对网络本身的结构做改变。</p>
+<p>开始，删除掉隐藏层随机选择的一半神经元；然后，在这个更改过的神经网络上正向和反向更新，利用一个minibatch；然后，恢复之前删除的神经元，重新随机选择一半神经元删除，正向，反向，更新wb。</p>
+<p>为什么dropout可以减少overfitting？ 假设我们对于同一组训练数据，利用不同的神经网络来训练，训练完成后，求输出的平均值，这样可以减少overfitting。dropout同样的道理，每次扔掉一半隐藏层的神经元，相当于我们在不同的神经网络上训练了，减少了神经元的依赖性，也就是每个神经元不能依赖于某个或某几个其他神经元，迫使神经元学习到更加和其他神经元联合起来的更加健硕的特征。</p>
+<p>人工扩大训练集：
+人工产生更多训练数据，例如旋转不同角度。增大时，要模拟现实世界中这种数据可能出现的变化，来概括更广。
+</p>
+<p>初始化权重：正态分布，修正版权重初始化方法。</p>
+
+ 
+
+<hr />
+<p>来自于机器学习基石课程</p>
+<p>坏的泛化：低的Ein，高的Eout；过拟合：Ein 变低，Eout 变高</p>
+<p>类比：学习/开车，过拟合/发生车祸，使用过度的dvc/开太快，噪声/路不平，噪声量有限/对道路条件的观察有限。</p>
+<p>过拟合：使用过度的dVC，噪声，数据量N 有限</p>
+<p>解决过拟合：从简单模型开始/开慢车，数据清理/修剪/使用更精确的道路信息，数据暗示/利用更多道路信息，正则化（regularization）/踩刹车，验证（validation）/监视仪表盘。</p>
+
+
+
+
+<hr />
+
+
+
+<p>作者：无名氏。</p>
+
+
+
+</article>
+<footer>
+    <a href="/homepage/views/posts" class="js_goto_posts">返回目录 - 痕迹</a>
+</footer>
+<div class="browser js_browser">
+    <img src="" />
+</div>
+
+<script src="/homepage/assets/script/main.js"></script>
+</body>
+</html>
