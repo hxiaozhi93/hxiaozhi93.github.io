@@ -42,7 +42,7 @@
     <div>
         <h2>MLDL</h2>
         <time>23 Apr 2017</time>
-        <p class="abstract">>机器学习和深度学习相关的课程与资料</p>
+        <p class="abstract">机器学习和深度学习相关的课程与资料</p>
         <ul class="c-fix">
             
             <li>机器学习</li>
@@ -67,6 +67,7 @@
 <p>赵永科 《深度学习：21天实战Caffe》</p>
 <p>郑泽宇 顾思宇 《Tensorflow：实战Google深度学习框架》</p>
 <p>黄文坚 唐源 《TensorFlow实战》</p>
+<p>北京理工大学-礼欣、嵩天 MOOC《Python机器学习应用》</p>
 
 <hr />
 
@@ -163,6 +164,34 @@
 <p>minibatch 大小</p>
 <p>学习率</p>
 <p>梯度下降：SGS，hessian优化，momentum-based GD</p>
+
+<hr />
+
+
+<p>《Python机器学习应用-MOOC-北京理工大学-礼欣、嵩天》</p>
+<p>sklearn库的基本功能：分类，回归，聚类，降维，模型选择，数据预处理</p>
+<p>分类：最近邻算法/neighbors.NearestNeighbors，支持向量机/svm.SVC，朴素贝叶斯/naive_bayes.GaussianNB，决策树/tree.DecisionTreeClassifier，集成方法/ensemble.BaggingClassifier，神经网络/neural_network.MLPClassifier.</p>
+<p>回归：岭回归/linear_model.Ridge，Lasso回归/linear_model.Lasso，弹性网络/linear_model.ElasticNet，最小角回归/linear_model.Lars，贝叶斯回归/linear_model.BayesianRidge，逻辑回归/linear_model.LogisticRegression，多项式回归/preprocessing.PolynomialFeatures。</p>
+<p>聚类：K-means/cluster.KMeans，AP聚类/cluster.AffinityPropagation，均值漂移，层次聚类，DBSCAN，BIRCH，谱聚类。</p>
+<p>降维：主成分分析/decomposition.PCA，截断SVD和LSA，字典学习，因子分析，独立成分分析，非负矩阵分解，LDA。</p>
+<p>数据集：如from sklearn.datasets import load_digits;digits=load_digits();print (digits.data.shape);print (digits.target.shape);print (digits.images.shape);import matplotlib.pyplot as plt;plt.matshow(digits.image[0]);plt.show();</p>
+<p>聚类：根据数据的“相似性”将数据分为多类的过程。评估不同样本间的“相似性”，通常方法为计算两个样本间的“距离”。欧式距离，曼哈顿距离，马氏距离（表示数据的协方差距离，是一种尺度无关的度量方式），夹角余弦（用向量空间中两个向量夹角的余弦值作为衡量两个样本差异的大小），聚类算法所在模块：sklearn.cluster。</p>
+<p>K-means聚类算法：k-means算法以k为参数，把n个对象分成k个簇，使簇内具有较高的相似度，而簇间的相似度较低。（随机选择k个点作为初始的聚类中心，对于剩下的点，根据其与聚类中心距离将归入最近簇, 对每个簇，计算所有点的均值作为新聚类中心,重复直到聚类中心不再发生改变</p>
+<p>DBSCAN聚类算法：算法是一种基于密度的聚类：聚类的时候不需要预先指定簇个数,最终的簇个数不定,DBSCAN DBSCAN 算法将数据点分为三类：核心点：在半径 Eps 内含有超过 MinPts数目的点,边界点：在半径 Eps 内点的数量小于 MinPts ，但是落在核心点的邻域内,噪音点.</p>
+<p>主成分析（ Principal Component Analysis ，PCA ）是最常用的 一种降维方法，通常用于高数据集的探索与可视化，还可以作据压缩和预处理等。原理：矩阵的主成分就是其协方差对应的特征向量，按照的特征值大小进行排序，最大的特征值就是第一主成分，其次是第二成分，以此类推。</p>
+<p>非负矩阵分解（ Non -negative Matrix Factorization，NMF ） 是在矩阵中所有元素均为非负数约束条件之下的矩阵分解方法。基本思想：给定一个非负矩阵 V，NMF 能够找到一个非负矩阵 W和一个 非负矩阵 H，使得矩阵 W和H的乘积近似等于矩阵 V中的值。</p>
+<p>精确率： 精确率是针对我们预测结果而言的 ，（ 以二分类为例 ）它 表示 的是预测为正样本中有多少真。那么就两种可能了，一种就是把正类 预测为正类(TP) ，另一种就是把负类 预测为正类(FP)，P=TP/(TP+FP）。召回率： 是针对我们原来的样本而言，它表示中正例有多 少被预测正确了。那也有两种可能，一是把原来的正类 预测为正类(TP) ， 另一种就是把原来的正类 预测为负类(FN) ，R=TP/(TP+FN）。准确率=(TP+TN)/(FN+FP+TN) .</p>
+<p>朴素贝叶斯分类器是一个以贝叶斯定理为基础 的多分类的分类器。对于给定数据，首先基于特征的条件独立性假 设，学习输入输出的联合概率分布，然后基于此模型，对给定的输入 x，利用贝叶斯定理求出后验概 率最大的输出 y。</p>
+<p>决策树 是一种树形结构的分类器，通过顺序 询问分类点的属性决定最终别。通常根据特征的信息增益或其他指标，构建一颗决策树。在分类时，只需要按照决策中的结点依次进行判断，即可得到样本所属类别。</p>
+<p>强化学习就是程序或智能体（ agent ）通过与环境不断地进行交互学习一 个从环境到动作的映射，学习目标就是使累计 回报 最大化。强化学习是一种试错学习，因其在各状态（环境）下需要尽量尝所有可以选择的动作，通过环境给出反馈（即奖励）来判断动作的优劣，最终获得环境和优动作的映射关系（即策略）。</p>
+<p>马尔可夫决策过程（ Markov Decision tree）通常用来描述一个强化学习问题
+ 智能体 agent 根据 当前对 环境的 观察 采取动作获得环境的 反馈 ，并使 环境 发生改变的循环过程。MDP基本元素：状态集合，动作集合，状态转移模型，agent采取某动作后的即时奖励，策略等。状态值函数：表示执行策略能得到的累计折扣奖励。状态动作值函数：表示在状态s下执行动作a能得到的累计折扣奖励。</p>
+<P>在现实的强化学习任务中，环境的转移概率、奖励函数往很难得知，甚至很难得知环境中有多少状态。若学习算法不再依赖于环境建模，则称为 免模型学习 ，蒙特卡洛强化学习就是其中的一种。蒙特卡洛强化学习使用多次采样，然后求取平均累计奖赏作为期望累计奖赏的近似。</P>
+<p>蒙特卡洛强化学习算法需要采样一个完整的轨迹来更新值函数，效率较低， 此外 该算法没有充分利用强化学习任务的序贯决策结构。
+ Q-learning算法结合了动态规划与蒙特卡洛方的思想，使得学习更加高效。</p>
+<p>传统强化学习：真实环境中的状态数目过多，求解困难。深度 强化 学习：将 深度学习和强化学习结合在 一起，通过深度神经网络 直接学习环境（或观察）与状态动作值函数 Q( s,a )之间的映射关系，简化问题的求解。
+</p>
+
 
 <hr />
 
