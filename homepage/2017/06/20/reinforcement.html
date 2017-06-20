@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="强化学习" />
+    <meta name="description" content="overfitting" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>小志同学 - 强化学习</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/sunburst.min.css" />
+    <link rel="stylesheet/less" href="/homepage/assets/style/style.less" />
+    <script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+</head>
+<body>
+<script>
+    var pageData = {};
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?6b9830e6ab8073ce1a44ad49a03d8596';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<img src="http://oij8a9ql4.bkt.clouddn.com/portrait.jpg" alt="小志同学" width="0" height="0" />
+<nav>
+    <a href="javascript:;" class="js_menu_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <ul class="js_menu">
+        <li><a href="/homepage/">Home</a></li>
+        <li><a href="/homepage/views/posts" class="js_goto_posts">Posts</a></li>
+        <li><a href="/homepage/views/about">About</a></li>
+    </ul>
+</nav>
+<a href="javascript:;" class="gotop js_gotop"></a>
+<header class="post" style="background-image: url('http://oij8a9ql4.bkt.clouddn.com/banner.jpg')">
+    <div>
+        <h2>强化学习</h2>
+        <time>20 Jun 2017</time>
+        <p class="abstract">强化学习</p>
+        <ul class="c-fix">
+            
+                    <li>机器学习</li>
+
+                    <li>强化学习</li>
+
+
+            
+        </ul>
+    </div>
+</header>
+<article class="js_article">
+
+
+<hr />
+
+<p>参考自MOOC《Python机器学习应用》北京理工大学-礼欣、嵩天</p>
+
+
+<p>强化学习就是程序或智能体（ agent ）通过与环境不断地进行交互学习一个从环境到动作的映射，学习目标就是使累计回报最大化。强化学习是一种试错学习，因其在各状态（环境）下需要尽量尝所有可以选择的动作，通过环境给出反馈（即奖励）来判断动作的优劣，最终获得环境和优动作的映射关系（即策略）。</p>
+
+<P>马尔可夫决策过程（ Markov Decision tree）通常用来描述一个强化学习问题。智能体 agent 根据 当前对 环境的 观察 采取动作获得环境的 反馈 ，并使 环境 发生改变的循环过程。MDP基本元素：有限状态state集合，有限动作action集合，状态转移模型（根据当前状态和动作预测下一状态），agent采取某动作后的即时奖励，策略等。状态值函数：表示执行策略能得到的累计折扣奖励。状态动作值函数：表示在状态s下执行动作a能得到的累计折扣奖励。最优值函数。最优控制（在得到最优值函数之后，可以通过值函数的值得到状态s时应该采取的动作a）。</P>
+
+<p>在现实的强化学习任务中，环境的转移概率、奖励函数往很难得知，甚至很难得知环境中有多少状态。若学习算法不再依赖于环境建模，则称为 免模型学习 ，蒙特卡洛强化学习就是其中的一种。蒙特卡洛强化学习使用多次采样，然后求取平均累计奖赏作为期望累计奖赏的近似。蒙特卡洛强化学习：直接对状态动作值函数进行估计，每采样一条轨迹，就根据轨迹中的所有“状态动作”利用相关公式对值函数进行更新。每次更新采样完所有的“状态动作”对所对应的状态动作值函数，就需要更新采样策略。但由于策略可能是确定性的，即一个状态对应一个动作，多次采样可能获得相同的采样轨迹，因此需要借助贪心策略。</p>
+
+<p>蒙特卡洛强化学习算法需要采样一个完整的轨迹来更新值函数，效率较低， 此外 该算法没有充分利用强化学习任务的序贯决策结构。  Q-learning算法结合了动态规划与蒙特卡洛方法的思想，使得学习更加高效。Q-learning算法。。。</p>
+
+<p>传统强化学习：真实环境中的状态数目过多，求解困难。深度 强化 学习：将 深度学习和强化学习结合在 一起，通过深度神经网络 直接学习环境（或观察）与状态动作值函数 Q( s,a )之间的映射关系，简化问题的求解。 Deep Q Network（DQN）：将神经网络和Q-learning结合，利用神经网络近似模拟函数状态动作值函数。输入是问题的状态，输出是每个动作对应的Q值，然后依据Q值大小选择对应状态执行的动作，以完成控制。</p>
+
+<p>DQN学习流程：状态s输入，获得所有动作对应的Q值；选择对应Q值最大的动作并执行；执行后环境发生改变，并能够获得环境的奖励；利用奖励更新Q(S,A')（强化学习）,利用新的Q(S,A')更新网络参数（监督学习）</p>
+
+
+<p>2013年，deep mind团队在NIPS发表《palying atari with deep reinforcement learning》,首次提出deep reinforcement learning一词，并提出DQN算法，实现从纯图像输入完全通过学习来玩atari游戏。</p>
+
+<p>强化学习：以TensorFlow实现Flappy bird游戏的自主学习的实例。技术路线：DQN。工具：TensorFlow+pygame+cv2</p>
+
+<p>基本框架：训练 过程也就是 神经网络（ agent） 不断与游戏模拟器（ Environment ） 进行交互，通过模拟器获得状态，给出动作，改变模拟器中的状态，获得反馈，依据反馈更新策略的过程。训练过程分三个阶段：观察期（随机动作）、探索期（会根据抽样对网络参数进行更新）、训练期（迭代过程中不再修改sigma的值）。游戏模拟器：使用python的pygame模块。动作选择模块：以概率sigma随机从动作空间中选择动作，以1-sigma概率依靠神经网络的输出选择动作。DQN：用CNN对游戏画面进行特征提取，可理解为对状态的提取。</p>
+
+<p>理解TensorFlow：使用图（graph）来表示计算任务；在会话（session）的上下文（context）中执行图；使用张量（tensor）表示数据；通过变量（variable）维护状态；使用feed和fetch可以为任意的操作赋值或从其中获取数据。构建阶段（op的执行顺序被描述成一个图）和执行阶段（使用会话执行图中的op）。feed机制，可以临时替代图中任意操作的tensor。如使用tf.placeholder()创建占位符，相当于作为图中的输入，然后使用feed机制向图中占位符提供数据进行计算。</p>
+<hr />
+
+
+
+<p>作者：无名氏。</p>
+
+
+
+</article>
+<footer>
+    <a href="/homepage/views/posts" class="js_goto_posts">返回目录 - 痕迹</a>
+</footer>
+<div class="browser js_browser">
+    <img src="" />
+</div>
+
+<script src="/homepage/assets/script/main.js"></script>
+</body>
+</html>
