@@ -99,7 +99,15 @@ digits=load_digits(return_X_y=True)，参数return_X_y为True时，以（data，
 <p>在现实的强化学习任务中，环境的转移概率、奖励函数往很难得知，甚至很难得知环境中有多少状态。若学习算法不再依赖于环境建模，则称为 免模型学习 ，蒙特卡洛强化学习就是其中的一种。蒙特卡洛强化学习使用多次采样，然后求取平均累计奖赏作为期望累计奖赏的近似。蒙特卡洛强化学习算法需要采样一个完整的轨迹来更新值函数，效率较低， 此外 该算法没有充分利用强化学习任务的序贯决策结构。  Q-learning算法结合了动态规划与蒙特卡洛方的思想，使得学习更加高效。传统强化学习：真实环境中的状态数目过多，求解困难。深度 强化 学习：将 深度学习和强化学习结合在 一起，通过深度神经网络 直接学习环境（或观察）与状态动作值函数 Q( s,a )之间的映射关系，简化问题的求解。 </p>
 <p>强化学习：以TensorFlow实现Flappy bird游戏的自主学习的实例。</p>
 
+<hr />
 
+<p>from sklearn.cross_validation import train_test_split，例如X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.25)</p>
+<p>from sklearn.datasets import fetch_lfw_people，例如lfw_people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)</p>
+<p>from sklearn.grid_search import GridSearchCV<，例如clf = GridSearchCV(SVC(kernel='rbf', class_weight='auto'), param_grid)/p>
+<p>from sklearn.metrics import classification_report，例如print(classification_report(y_test, y_pred, target_names=target_names))</p>
+<p>from sklearn.metrics import confusion_matrix，例如print(confusion_matrix(y_test, y_pred, labels=range(n_classes)))</p>
+<p>from sklearn.decomposition import RandomizedPCA，例如pca = RandomizedPCA(n_components=n_components, whiten=True).fit(X_train)</p>
+<p>from sklearn.svm import SVC</p>
 
 <hr />
 

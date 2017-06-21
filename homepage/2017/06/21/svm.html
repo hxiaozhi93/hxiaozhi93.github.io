@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="svm" />
+    <meta name="description" content="overfitting" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>小志同学 - svm</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/sunburst.min.css" />
+    <link rel="stylesheet/less" href="/homepage/assets/style/style.less" />
+    <script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+</head>
+<body>
+<script>
+    var pageData = {};
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?6b9830e6ab8073ce1a44ad49a03d8596';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<img src="http://oij8a9ql4.bkt.clouddn.com/portrait.jpg" alt="小志同学" width="0" height="0" />
+<nav>
+    <a href="javascript:;" class="js_menu_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <ul class="js_menu">
+        <li><a href="/homepage/">Home</a></li>
+        <li><a href="/homepage/views/posts" class="js_goto_posts">Posts</a></li>
+        <li><a href="/homepage/views/about">About</a></li>
+    </ul>
+</nav>
+<a href="javascript:;" class="gotop js_gotop"></a>
+<header class="post" style="background-image: url('http://oij8a9ql4.bkt.clouddn.com/banner.jpg')">
+    <div>
+        <h2>svm</h2>
+        <time>21 Jun 2017</time>
+        <p class="abstract">支持向量机: Maximum Margin Classifier</p>
+        <ul class="c-fix">
+            
+                    <li>SVM</li>
+
+                    <li>python</li>
+
+                    <li>sklearn</li>
+
+
+            
+        </ul>
+    </div>
+</header>
+<article class="js_article">
+
+
+<hr />
+
+<p>参考自麦子学院《深度学习基础：机器学习》</p>
+<p>最早是由 Vladimir N. Vapnik 和 Alexey Ya. Chervonenkis 在1963年提出,目前的版本(soft margin)是由Corinna Cortes 和 Vapnik在1993年提出，并在1995年发表,深度学习（2012）出现之前，SVM被认为机器学习中近十几年来最成功，表现最好的算法.</p>
+<p>机器学习的一般框架：训练集 => 提取特征向量 => 结合一定的算法（分类器：比如决策树，KNN）=>得到结果</p>
+<p>SVM寻找区分两类的超平面（hyper plane), 使边际(margin)最大.总共可以有多少个可能的超平面？无数条. 如何选取使边际(margin)最大的超平面 (Max Margin Hyperplane)？超平面到一侧最近点的距离等于到另一侧最近点的距离，两侧的两个超平面平行。</p>
+<p>所有坐落在边际的两边的的超平面上的被称作”支持向量(support vectors)"。两个支撑着中间的 gap 的超平面，它们到中间的 separating hyper plane 的距离相等，即我们所能得到的最大的 geometrical margin，由于在 n 维向量空间里一个点实际上是和以原点为起点，该点为终点的一个向量是等价的，所以这些“支撑”的点便叫做支持向量。分界的超平面和H1或H2上任意一点的距离为1/||W||。</p>
+<p>SVM如何找出最大边际的超平面呢(MMH)？利用一些数学推倒，可变为有限制的凸优化问题(convex quadratic optimization)利用 Karush-Kuhn-Tucker (KKT)条件和拉格朗日公式，可以推出MMH可以被表示为“决定边     
+界 (decision boundary)”  。对于任何测试（要归类的）实例，带入决策边界公式，得出的符号是正还是负决定 </p>
+<p>sklearn例子：</p>
+<p>from sklearn import svm</p>
+<p>X = [[2, 0], [1, 1], [2,3]]</p>
+<p>y = [0, 0, 1]</p>
+<p>clf = svm.SVC(kernel = 'linear')</p>
+<p>clf.fit(X, y)  </p>
+<p>print clf</p>
+<p>print clf.support_vectors_ # get support vectors</p>
+<p>print clf.support_  # get indices of support vectors</p>
+<p>print clf.n_support_ # get number of support vectors for each class</p>
+<p>SVM算法特性：训练好的模型的算法复杂度是由支持向量的个数决定的，而不是由数据的维度决定的。所以SVM不太容易产生overfitting。SVM训练出来的模型完全依赖于支持向量(Support Vectors), 即使训练集里面所有非支持向量的点都被去除，重复训练过程，结果仍然会得到完全一样的模型。一个SVM如果训练得出的支持向量个数比较小，SVM训练出的模型比较容易被泛化。</p>
+<p>线性不可分的情况 （linearly inseparable case)，数据集在空间中对应的向量不可被一个超平面区分开。两个步骤来解决：利用一个非线性的映射把原数据集中的向量点转化到一个更高维度的空间中，在这个高维度的空间中找一个线性的超平面来根据线性可分的情况处理。视觉化演示 https://www.youtube.com/watch?v=3liCbRZPrZA。</p>
+<p>如何利用非线性映射把原始数据转化到高维中？如何选择合理的非线性转化把数据转到高纬度中？如何解决计算内积时算法复杂度非常高的问题？使用核方法（kernel trick)</p>
+<p>在线性SVM中转化为最优化问题时求解的公式计算都是以内积(dot product)的形式出现的，非线性映射函数把训练集中的向量点转化到高维，因为内积的算法复杂度非常大，所以我们利用核函数来取代计算非线性映射函数的内积。</p>
+<p>常用的核函数(kernel functions)，h度多项式核函数(polynomial kernel of degree h)，高斯径向基核函数(Gaussian radial basis function kernel)，S型核函数(Sigmoid function kernel)，</p>
+<p>如何选择使用哪个kernel？根据先验知识，比如图像分类，通常使用RBF，文字不使用RBF，尝试不同的kernel，根据结果准确度而定。</p>
+<p>核函数举例:：</p>
+<p>假设定义两个向量： x = (x1, x2, x3); y = (y1, y2, y3)</p>
+<p>定义方程：f(x) = (x1x1, x1x2, x1x3, x2x1, x2x2, x2x3, x3x1, x3x2, x3x3)</p>
+<p>K(x, y ) = (<x, y>)^2</p>
+<p>假设x = (1, 2, 3); y = (4, 5, 6). </p>
+<p>f(x) = (1, 2, 3, 2, 4, 6, 3, 6, 9)</p>
+<p> f(y) = (16, 20, 24, 20, 25, 36, 24, 30, 36)</p>
+<p><f(x), f(y)> = 16 + 40 + 72 + 40 + 100+ 180 + 72 + 180 + 324 = 1024</p>
+<p> K(x, y) = (4  + 10 + 18 ) ^2 = 32^2 = 1024</p>
+<p>同样的结果，使用kernel方法计算容易很多</p>
+<p>SVM扩展可解决多个类别分类问题：对于每个类，有一个当前类和其他类的二类分类器（one-vs-rest)。</p>
+<p>利用SVM进行人脸识别实例：略。</p>
+
+
+
+<hr />
+
+
+
+<p>作者：无名氏。</p>
+
+
+
+</article>
+<footer>
+    <a href="/homepage/views/posts" class="js_goto_posts">返回目录 - 痕迹</a>
+</footer>
+<div class="browser js_browser">
+    <img src="" />
+</div>
+
+<script src="/homepage/assets/script/main.js"></script>
+</body>
+</html>

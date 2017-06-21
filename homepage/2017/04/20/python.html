@@ -116,7 +116,19 @@
 <p>pip install xx：安装package</p>
 
 <hr />
+<p>使用__future__</p>
+<p>Python的每个新版本都会增加一些新的功能，或者对原来的功能作一些改动。有些改动是不兼容旧版本的，也就是在当前版本运行正常的代码，到下一个版本运行就可能不正常了。Python提供了__future__模块，把下一个新版本的特性导入到当前版本，于是我们就可以在当前版本中测试一些新版本的特性。</p>
+<p>例如：在Python 2.x中，对于除法有两种情况，如果是整数相除，结果仍是整数，余数会被扔掉，这种除法叫“地板除”，要做精确除法，必须把其中一个数变成浮点数。而在Python 3.x中，所有的除法都是精确除法，地板除用//表示。如果你想在Python 2.7的代码中直接使用Python 3.x的除法，可以通过__future__模块的division实现</p>
+<p>from __future__ import print_function</p>
 
+
+
+<hr />
+<p>from time import time</p>
+<p>import logging</p>
+<p>import pylab as pl</p>
+
+<hr />
 <p>小白。勿念。</p>
 
 <hr />
