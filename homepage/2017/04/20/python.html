@@ -129,6 +129,83 @@
 <p>import pylab as pl</p>
 
 <hr />
+
+<p>参考自机器学习实战</p>
+<p>查看版本：python --version</p>
+<p>python容器：列表（List），例如a=[],a.append('one'),a.append(2),</p>
+<p>python容器：字典（Dictionary）,例如b={},b['cat']='dog',b[3]=4,</p>
+<p>python容器：集合（set），例如s=set([1,2,3]),sa=set([2,3,4]),s-sa,s&sa,s|sa,</p>
+<p>遍历字典：a={'cat':'dog,1:2},for item in a : print item,a[item]</p>
+<p>列表推导式：a=[1,2,3],list=[item*3 for item in a],等价于list=[],for item in a:list.append(item*3)</p>
+<p>numpy:python的一个矩阵类型，提供大量矩阵处理函数，其内部运算通过C语言而非python实现。numpy包含两种基本数据类型：数组和矩阵。</p>
+<p>from numpy import array,a=((1,2,3)),b=((2,3,4)),a+b,a[1],a*2,a**2</p>
+<p>from numpy import mat,matrix,mm=mat([1,2,3]),nn=[2,3,4],nnn=mat(nn),mm*nnn(错),mm*nnn.T,</p>
+<p>shape方法查看矩阵或数组维数：from numpy import shape,shape(mm),shape(nnn.T)</p>
+<p>数组乘：*（数组对应元素相乘），矩阵乘：*，矩阵元素相乘：multiply</p>
+<p>from numpy import mutiply,multiply(mm,nnn),multiply(mm,nnn.T)(这个也可以计算？)</p>
+<p>排序方法：mm.sort()，例如aa=mat([1,3,2]),aa.sort(),（原地排序，即排序后的结果占用原始的存储空间，若要保留数据原序，需做一份数据拷贝）</p>
+<p>排序序号：aa=mat([1,3,2]),aa.argsort(),</p>
+<p>矩阵均值：aa.mean(),</p>
+<p>取元素：aa=mat([[1,2,3],[4,5,6]]),shape(aa),aa[1,:],aa[1,0:2],</p>
+<p>查找和解析HTML：BeautifulSoup库，</p>
+<p>Mrjob：用于在Amazon网络服务上启动MapReduce服务。</p>
+
+<hr />
+
+<p>参考自CS231n课程笔记：Python Numpy教程</p>
+<p>Python实现的经典的quicksort算法:</p>
+<p>def quicksort(arr):</p>
+<p>    if len(arr) <= 1:</p>
+<p>        return arr</p>
+<p>    pivot = arr[len(arr) / 2]</p>
+<p>    left = [x for x in arr if x < pivot]</p>
+<p>    middle = [x for x in arr if x == pivot]</p>
+<p>    right = [x for x in arr if x > pivot]</p>
+<p>    return quicksort(left) + middle + quicksort(right)</p>
+<p>print quicksort([3,6,8,10,1,2,1])</p>
+<p>数据类型：a=3,print type(a),</p>
+<p>布尔型：Python实现了所有的布尔逻辑，但用的是英语，而不是我们习惯的操作符（比如&&和||等）。例如：t=Ture,f=False,print type(t),print t and f,t or f,not t,t!=f,</p>
+<p>字符串：a='abc',d='efg',print a,len(a),c=a+' '+d,</p>
+<p>字符串对象方法：a.capitalize(),a.upper(),a.rjust(7),a.center(7),a.replace('b','bbb'),'     aaa'.strip()</p>
+<p>c='%s %s %d' % (a,b,3)</p>
+
+<p>列表：a=[1,2,3],a.append('a'),a.pop(),a[-1],</p>
+<p>切片：</p>
+
+<p>循环Loops，要在循环体内访问每个元素的指针，可以使用内置的enumerate函数，a=['cat','dog'],for idx,aa in enumerate(a):  print '#%d: %s' % (idx+1,aa),</p>
+<p>元组是一个值的有序列表（不可改变）,和列表最重要的不同在于，元组可以在字典中用作键，还可以作为集合的元素，而列表不行。</p>
+<p>Python函数使用def来定义函数</p>
+
+<p>类class</p>
+
+
+<p>数组Arrays:np.zeros((2,2)), np.full((2,2), 7),np.eye(2),np.random.random((2,2)),</p>
+<p>和MATLAB不同，*是元素逐个相乘，而不是矩阵乘法。在Numpy中使用dot来进行矩阵乘法：</p>
+<p>计算数组的函数如sum：x = np.array([[1,2],[3,4]])，print np.sum(x)，print np.sum(x, axis=0)，print np.sum(x, axis=1)，</p>
+<p>y = np.empty_like(x)   # Create an empty matrix with the same shape as x</p>
+<p>vv = np.tile(v, (4, 1))  # Stack 4 copies of v on top of each other</p>
+<p>SciPy提供了一些操作图像的基本函数。比如，它提供了将图像从硬盘读入到数组的函数，也提供了将数组中数据写入的硬盘成为图像的函数。</p>
+<p>from scipy.misc import imread, imsave, imresize;img = imread('assets/cat.jpg');print img.dtype, img.shape;img_tinted = imresize(img_tinted, (300, 300));</p>
+<p>函数scipy.io.loadmat和scipy.io.savemat能够让你读和写MATLAB文件。</p>
+<p>函数scipy.spatial.distance.pdist能够计算集合中所有两点之间的距离</p>
+<p>import numpy as np</p>
+<p>from scipy.misc import imread,imsave,imresize</p>
+<p>import matplotlib.pyplot as plt</p>
+<p>img=imread('dog.jpg')</p>
+<p>print img.dtype,img.shape</p>
+<p>img_tinted=img*[1,0.95,0.9]</p>
+<p>img_tinted=imresize(img_tinted,(300,300))</p>
+<p>imsave('dog_tinted.jpg',img_tinted)</p>
+<p>plt.subplot(1,2,1)</p>
+<p>plt.imshow(img)</p>
+<p>plt.title('dog')</p>
+<p>plt.subplot(1,2,2)</p>
+<p>plt.imshow(np.uint8(img_tinted))</p>
+<p>plt.tilte('dog_tinted')</p>
+<p>plt.show()</p>
+
+<hr />
+
 <p>小白。勿念。</p>
 
 <hr />
