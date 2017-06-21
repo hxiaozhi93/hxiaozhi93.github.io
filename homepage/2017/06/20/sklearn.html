@@ -111,7 +111,32 @@ digits=load_digits(return_X_y=True)，参数return_X_y为True时，以（data，
 
 <hr />
 
+<p>基于sklearn的KNN</p>
+<p>from sklearn import neighbors</p>
+<p>from sklearn import datasets</p>
+<p>knn = neighbors.KNeighborsClassifier()</p>
+<p>iris = datasets.load_iris()</p>
+<p>print iris</p>
+<p>knn.fit(iris.data, iris.target)</p>
+<p>predictedLabel = knn.predict([[0.1, 0.2, 0.3, 0.4]])</p>
+<p>print predictedLabel</p>
 
+
+<hr />
+
+<p>基于sklearn的svm</p>
+<p>from sklearn import svm</p>
+<p>X = [[2, 0], [1, 1], [2,3]]</p>
+<p>y = [0, 0, 1]</p>
+<p>clf = svm.SVC(kernel = 'linear')</p>
+<p>clf.fit(X, y)  </p>
+<p>print clf</p>
+<p>print clf.support_vectors_ # get support vectors</p>
+<p>print clf.support_  # get indices of support vectors</p>
+<p>print clf.n_support_  # get number of support vectors for each class</p>
+
+
+<hr />
 
 <p>作者：无名氏。</p>
 
