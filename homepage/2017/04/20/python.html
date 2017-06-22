@@ -258,10 +258,14 @@
 <p>&nbsp; return normdataset,ranges,minvals</p>
 <p>从文件名解析分类数字，例如文件名为9_45.txt,其表示数字9的第45个实例</p>
 <p>filestr=filenamestr.split('.')[0],classnumstr=int(filestr.split('_')[0],</p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+
+
+<hr />
+
+<p>import urllib</p>
+<p>url = "http://archive.ics.uci.edu/ml/machine-learning-databases/pima-indians-diabetes/pima-indians-diabetes.data",raw_data = urllib.urlopen(url),dataset = np.loadtxt(raw_data, delimiter=",")</p>
+<p>from sklearn import preprocessing</p>
+<p>normalized_X = preprocessing.normalize(X),standardized_X = preprocessing.scale(X)</p>
 <p></p>
 <p></p>
 <p></p>
