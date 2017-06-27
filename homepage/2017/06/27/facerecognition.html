@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="人脸识别" />
+    <meta name="description" content="人脸识别" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>小志同学 - 人脸识别</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/sunburst.min.css" />
+    <link rel="stylesheet/less" href="/homepage/assets/style/style.less" />
+    <script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+</head>
+<body>
+<script>
+    var pageData = {};
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?6b9830e6ab8073ce1a44ad49a03d8596';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<img src="http://oij8a9ql4.bkt.clouddn.com/portrait.jpg" alt="小志同学" width="0" height="0" />
+<nav>
+    <a href="javascript:;" class="js_menu_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <ul class="js_menu">
+        <li><a href="/homepage/">Home</a></li>
+        <li><a href="/homepage/views/posts" class="js_goto_posts">Posts</a></li>
+        <li><a href="/homepage/views/about">About</a></li>
+    </ul>
+</nav>
+<a href="javascript:;" class="gotop js_gotop"></a>
+<header class="post" style="background-image: url('http://oij8a9ql4.bkt.clouddn.com/banner.jpg')">
+    <div>
+        <h2>人脸识别</h2>
+        <time>27 Jun 2017</time>
+        <p class="abstract">人脸检测与识别</p>
+        <ul class="c-fix">
+            
+                    <li>机器学习</li>
+
+                    <li>人脸识别</li>
+
+
+            
+        </ul>
+    </div>
+</header>
+<article class="js_article">
+
+
+<hr />
+
+<p>参考自 深度学习大讲堂 山世光 “人脸检测与识别年度进展概述”</p>
+<p>一套全自动的人脸识别系统大概包括三个不同的步骤：1.人脸检测，即从画面中框出图像中出现的人脸；2.特征点定位，即标记出人脸上的眼睛、鼻子、嘴等关键点；3.狭义的人脸识别，即完成输入人脸与系统已见过、记忆过的人脸的比对。</p>
+<p>人脸检测:在人脸检测方面，目前主流的方法是通用目标检测中的R-CNN等这类方法，Cascade CNN则是比较特异于人脸检测的方法，它将传统的滑动窗口方法与深度学习相结合，也取得了不亚于R-CNN系列方法的性能。</p>
+<p>特征点定位:感觉去年的一个趋势是从过去流行的基于深度特征学习的Cascaded Shape Regression策略，到引入RNN这样的循环神经网络策略，并试图解决大姿态条件下的特征点定位问题。</p>
+<p>狭义的人脸识别或人脸比对:主流的方法仍然是采用各种深度卷积神经网络（DCNN），特别是ResNet，来学习更有判别力的特征。</p>
+<p>原有数据集:FDDB,IJB-A,MALF</p>
+<p>2016年人脸检测领域的一个重要变化是出现了一个新的Benchmark：香港中文大学贡献了一个规模更大、数据变化更丰富的新数据集——Wider Face。其中包括1.6万测试图像，共19.4万个标注人脸。更重要的是，如上图所示，数据集中的人脸有大小、姿态、光照、遮挡以及表情等各方面非常复杂的变化。特别的，其中50%的人脸高度小于50个像素，甚至大量高度小于20个像素的Tiny face。Wider Face将测试图像分为“难”、“中”、“易”三种不同的难度等级。</p>
+<p>针对小人脸检测问题，去年出现了TinyFace方法，该方法希望能够找到更小的人脸。它本质上采用了图像金字塔把小脸变大，再进行人脸检测，同时引入了大容量的网络如ResNet101，以及多尺度融合等技术，充分利用更多的上下文信息，并在Wider Face的Hard子集上取得了82.3%的精度，大大超过了之前的其他方法。</p>
+<p>从面部特征点定位的角度看，过去一年的主要技术路线仍然是把特征定位问题转化为瀑布式的形状回归问题进行求解。和过去几年一样，其中仍然是采用深度学习的特征，并用递归方式求解回归问题。2016年，该领域的一个有趣进展是引入了循环神经网络RNN，对Cascaded Shape Regression中stage-by-stage refine的策略进行建模，特别是通过把上一级的隐层输出作为下一层的输入等手段，在300W这样的数据集上面取得了比较大的进步。</p>
+<p>2016年另一个值得关注的面部特征点定位方法是密西根州立大学的Xiaoming Liu团队的工作。他们发表在CVPR2016上的工作特别针对大姿态人脸的特征点定位问题，采用深度改进后的3DMM方法对人脸进行三维建模，然后将建模后人脸的三维信息与二维图像相结合，再做形状回归。在大姿态人脸上，取得了显著优于已有方法的定位精度。</p>
+<p>狭义人脸识别指的是：首先采用前述的人脸检测和特征定位对所有人脸进行对齐，然后裁剪出眉眼鼻嘴形成的核心人脸区域，之后从中提取人脸特征进行存储或与已知人脸的特征进行相似度计算的过程。核心是“如何提取具有区分能力的特征”，2012年以来，采用深度卷积神经网络进行特征学习已经成为人脸识别领域的标准技术。过去一年来，这方面主要的进步还是来自更大规模实战数据以及残差卷积神经网络ResNet的应用。此外，对于一些难以获取大量数据的场景，研究人员也在想法设法采用半自动或自动的方法“增广”数据集，包括基于三维人脸模型合成人脸或者采用GAN这类方法生成数据.</p>
+<p>人脸识别应用场景:第一种场景，1:1 的人证合一验证系统。第二种场景，1:N静态照片比对系统。第三种场景是1:N+1动态人脸识别场景(区别于前面的1:N场景，这类场景是需要拒识非目标人的，所以是N+1。)。</p>
+
+
+
+
+
+
+<hr />
+
+
+
+<p>作者：无名氏。</p>
+
+
+
+</article>
+<footer>
+    <a href="/homepage/views/posts" class="js_goto_posts">返回目录 - 痕迹</a>
+</footer>
+<div class="browser js_browser">
+    <img src="" />
+</div>
+
+<script src="/homepage/assets/script/main.js"></script>
+</body>
+</html>
