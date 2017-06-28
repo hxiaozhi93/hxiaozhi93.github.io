@@ -86,6 +86,105 @@
 
 <hr />
 
+<p>caffe学习：</p>
+<p>命令行解析：./build/tools/caffe，caffe command args,command:train,test,device_query,time;args:-solver,-gpu,-snapshot,-weights,-iteration,-model,-sighup_effect</p>
+<p>图像数据转换成db文件：tools/convert_imageset.cpp,convert_imageset flags rootfolder/listfile db_name,listfile:手动编写列表清单文件，图片多时用脚本文件生成。flags：-shuffle,-backend,-resize_width/-resize_height,-check_size,-encoded,-encode_type</p>
+<p>训练和测试自己的图片：准备数据，转换成lmdb格式，计算均值并保存，创建模型并编写配置文件。计算均值：compute_image_mean.cpp,#sudo build/tools/compute_image_mean examples/myfile/img_train_lmdb examples/myfile/mean.binary.proto。训练：#sudo build/tools/caffe train -solver examples/myfile/solver.prototxt。</p>
+<p>数据可视化，加载图片并显示：</p>
+<p>import numpy as np</p>
+<p>import matplotlib.pyplot as plt</p>
+<p>import caffe</p>
+<p>caffe_root='E:\caffe\microsoft\caffe-master</p>
+<p>import os,sys</p>
+<p>os.chdir(caffe_root)</p>
+<p>sys.path.insert(0,caffe_root+'python')</p>
+<p>im=caffe.io.load_image('examples/images/cat.jpg')</p>
+<p>print im.shape</p>
+<p>plt.show(im)</p>
+<p>plt.axis('off')</p>
+
+<hr />
+
+<p>caffe for python 官方教程：</p>
+<p>（1）安装python,numpy,matplotlib,设置默认显示参数：</p>
+<p>import numpy as np</p>
+<p>import matplotlib.pyplot as plt</p>
+<p>plt.rcParams['figure.figsize']=(10,10)</p>
+<p>plt.rcParams['image.interpolation']='nearest'</p>
+<p>plt.rcParams['image.cmp']='gray'</p>
+<p>(2)加载caffe：</p>
+<p>#import sys</p>
+<p>caffe_root='../'</p>
+<p>#sys.path.insert(0,caffe_root+'python'</p>
+<p>import caffe</p>
+<p>(3)下载CaffeNet模型：</p>
+<p>import os</p>
+<p>if os.path.isfile(caffe_root+'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'):</p>
+<p> print 'CaffeNet found'</p>
+<p>else:</p>
+<p>  print "down pretrained CaffeNet model"</p>
+<p>(4)将caffe设置为CPU模式，并从硬盘加载网络：</p>
+<p>caffe.set_mode_cpu()</p>
+<p>model_def=caffe_root+'models/bvlc_reference_caffenet/deploy.prototxt'</p>
+<p>model_weights=caffe_root+'models/bvlc_reference_net/bvlc_reference_net.caffemodel'</p>
+<p>net=caffe.Net(model_def,model_weights,caffe.TEST)</p>
+<p>(5)输入预处理，caffenet默认输入：BGR，[0,255]，且减去ImageNet平均值，通道维数为outermost。matplotlib加载图像：[0,1],RGB,通道维数为innermost：</p>
+<p>mu=np.load(caffe_root+'python/caffe/imagenet/ilsvrc_2012_mean.npy')</p>
+<p>mu=mu.mean(1).mean(1)</p>
+<p>print 'mean-subtracted values:',zip('BGR',mu)</p>
+<p>trasnformer=caffe.io.Transformer({'data':net.blobs['data'].data.shape})</p>
+<p>transformer.set_mean('data',mu)</p>
+<p>transformer.set_transpose('data',(2,0,1))</p>
+<p>transformer.set_raw_scale('data',255)</p>
+<p>transformer.set_channel_swap('data',(2,1,0))</p>
+<p>(6)设置图像大小，加载图像并预处理</p>
+<p>net.blobs['data'].reshape(50,3,227,227)</p>
+<p>image=caffe.io.load_image(caffe_root+'examples/images/cat.jpg')</p>
+<p>transformed_image=transformer.preprocess('data',image)</p>
+<p>plt.imshow(image)</p>
+<p>plt.show()</p>
+<p>(7)图像数据拷贝到为net分配的内存中，并执行分类：</p>
+<p>net.blobs['data'].data[...]=transformed_image</p>
+<p>output=net.forward()</p>
+<p>output_prob=output['prob'][0]</p>
+<p>print 'predicted class is:',output_prob.argmax()</p>
+<p>(8)查看ImageNet标签：</p>
+<p>labels_file=caffe_root+'data/ilsvrc12/synset_words.txt'</p>
+<p>if not os.path.exists(labels_file):</p>
+<p>!../data/ilsvrc12/get_ilsvrc_aux.sh</p>
+<p>labels=np.loadtxt(labels_file,str,delimiter='lt')</p>
+<p>print 'output label:',labels[output_prob.argmax()()]</p>
+<p>(9)查看其它几个置信度较高的结果：</p>
+<p>top_inds=output_prob.argsort()[::-1][:5]</p>
+<p>print 'prob and labels'</p>
+<p>zip(output_prob[top_inds],labels[top_inds])</p>
+<p>(10)查看分类时间并转到GPU模式：</p>
+<p>%timeit net.forward()</p>
+<p>caffe.set_device(0)</p>
+<p>caffe.set_mode_gpu()</p>
+<p>net.forward()</p>
+<p>%timeit net.forward()</p>
+<p>(11)测试网络中间层输出（batch_size,channel_dim,height,width),blob激活图形状</p>
+<p>for layer_name,blob in net.blobs.iteritems():</p>
+<p>  print layer_name+'\t'+str(blob.data.shape)</p>
+<p>（12） parameter shapes, ordered dict, params, weights[0], biases[1].weights:(output_channels,input_channels,filter_height,filter_weidth),biases:(output_channels).</p>
+<p>for layer_name,param in net.params.iteritems:</p>
+<p>  print layer_name+'\t'+str(param[0].data.shape),str([param[1].data.shape)</p>
+<p>(13)测试自己的图片：</p>
+<p>image=caffe.io.load_image('image.jpg')</p>
+<p>net.blobs['data'].data[...]=transformer.preprocess('data',image)</p>
+<p>net.forward()</p>
+<p>output_prob=net.blobs['prob'].data[0]</p>
+<p>top_inds=output_prob.argsort()[::-1][:5]</p>
+<p>plt.imshow(image)</p>
+<p>plt.show()</p>
+<p>print 'prob and labels'</p>
+<p>zip(output_prob[top_inds],labels[top_inds])</p>
+
+<hr />
+
+
+
 <p>小白。勿念。</p>
 
 <hr />
