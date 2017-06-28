@@ -92,9 +92,33 @@
 <p>(3)Robots协议</p>
 <p>(4)BeautifulSoup库：</p>
 <p>(5)Scrapy爬虫框架</p>
+<p>pip install requests</p>
+<p>pip install beautifulsoup4</p>
+<p>import requests</p>
+<p>r=requests.get("www.baidu.com")</p>
+<p>r.status_code</p>
+<p>r.encoding='utf-8'</p>
+<p>r.txt</p>
+<p>demo=r.text</p>
+<p>from bs4 import BeautifulSoup</p>
+<p>soup=BeautifulSoup(demo,"html.parser")</p>
+<p>print (soup.prettify())</p>
+<p>scrapy爬虫框架：pip install scrapy</p>
+<p>requests:网页级爬虫，功能库，并发性考虑不足，性能较差，重点在页面下载，定制灵活，上手简单。</p>
+<p>scrapy：网站级爬虫，框架，并发性好，性能高，重点在爬虫结构，深度定制，入手稍难</p>
+
+
 
 <hr />
+<p>信息标记形式：xml,JSON,YAML</p>
+<p>XML:extensible markup language,<name>...</name></p>
+<p>JSON:javascript object notation,有类型的键值对，key：value</p>
+<p>Yaml：YAML ain't markup language,无类型键值对，利用缩进表示所属关系，“-”表示并列关系，</p>
+<p>XML最早的标记语言，可扩展性好，但繁琐。Internet上信息交互与传递</p>
+<p>JSON：信息有类型，适合程序处理，较xml简洁，移动应用云端和节点信息通信，无注释，</p>
+<p>YAML：信息无类型，文本信息比例最高，#表示注释</p>
 
+<hr />
 
 <p>python中的小技巧：</p>
 <p>交换数字：x, y = 10, 20  ————  x, y = y, x</p>
@@ -127,6 +151,8 @@
 <p>from time import time</p>
 <p>import logging</p>
 <p>import pylab as pl</p>
+<p>pprint 模块：提供了打印出任何python数据结构类和方法。</p>
+
 
 <hr />
 
@@ -272,6 +298,74 @@
 
 <hr />
 
+<p>关于图像处理：</p>
+<p>import matplotlib.pyplot as plt</p>
+<p>import matplotlib.image as mping</p>
+<p>import numpy as np</p>
+<p>lena=mping.imread('lena.png')</p>
+<p>lena.shape</p>
+<p>plt.imshow(lena)</p>
+<p>plt.show()</p>
+<p>from scipy import misc</p>
+<p>lena_resize=misc.imresze(lena,0.5)</p>
+<p>misc.imsave('lena_resize.png',lena_resize) #将array保存为图像</p>
+<p>np.save('lena_resize',lena_resize) #直接保存array</p>
+<p>img=np.load('lena_resize.npy')</p>
+<p>from PIL import Image</p>
+<p>im=Image.open('lena.png')</p>
+<p>im.show()</p>
+<p>im.save('lena_new.ong') #保存PIL图片</p>
+<p>import skimage #scikit-image,Image Processing Scikit(Toolbox for Scipy)</p>
+<p>skimage.io : imread/imsave/imshow/show</p>
+<p>skimage.segmentation.felzenszwalb(image,scale=1,sigma=0.8,min_size=20)</p>
+<p>no module named cv2</p>
+<p>解决： pip install opencv-python</p>
+<p>import cv2</p>
+<p>cv2.imread()</p>
+<p>cv2.imshow('image'.img)</p>
+<p>cv2.waitkey(0):键盘绑定函数，时间尺度为毫秒级，0则无限期等待</p>
+
+<hr />
+
+<p>x=[1,2,3]</p>
+<p>y=[4,5,6]</p>
+<p>xy=zip(x,y)</p>
+<p>print xy #[(1,4),(2,5),(3,6)]</p>
+
+<hr />
+
+<p>no module named cv2</p>
+<p>解决： pip install opencv-python</p>
+<p>import cv2</p>
+<p>cv2.imread()</p>
+<p>cv2.imshow('image'.img)</p>
+<p>cv2.waitkey(0):键盘绑定函数，时间尺度为毫秒级，0则无限期等待</p>
+
+<hr />
+
+<p>argparse:python用于解析命令行参数和选项的标准模块。</p>
+<p>import argparse,parser=argparse.ArgumentParser(),parser.add_augment(),parser.parse_args()</p>
+<p>导入模块，创建解析对象，添加命令行参数和选项，调用parse_args方法进行解析</p>
+
+
+<hr />
+
+<p>python中的语句if __name__=='__main__':</p>
+<p>一个python文件可直接作为脚本执行，也可import到其他的python脚本中被调用执行。若直接运行，则__name__的值将是一个缺省"__main__".若import，则模块__name__的值为模块文件名，不带路径或文件扩展名。</p>
+<p>“make a script both importable and executable"</p>
+<p>注：可在调试代码时，在if __name__=="__main__'加入调试代码，可以让外部代码模块调用时不运行调试代码，而想排查问题时，直接执行该模块文件，调试代码运行。</p>
+
+
+<hr />
+<p>windows+R:打开运行对话框。</p>
+
+
+<hr />
+<p>opencv-python: 可参考opencv-python中文教程 段立辉译</p>
+<p>内容略。。。</p>
+
+
+<hr />
 <p>小白。勿念。</p>
 
 <hr />
