@@ -366,6 +366,37 @@
 
 
 <hr />
+
+<p>写一个timer.py：</p>
+<p>import time</p>
+<p>class Timer(object):</p>
+<p>def __init__(self):</p>
+<p>self.total_time=0.</p>
+<p>self.start_time=0.</p>
+<p>self.calls=0.</p>
+<p>self.diff=0.</p>
+<p>self.average_time=0.</p>
+<p>def tic(self):</p>
+<p>self.start_time=time.time()</p>
+<p>def toc(self,average=True):</p>
+<p>self.diff=time.time()-self.start_time</p>
+<p>self.total_time+=self.diff</p>
+<p>self.calls+=1</p>
+<p>self.average_time=self.total_time/self.calls</p>
+<p>if average:</p>
+<p>return self.average_time</p>
+<p>else:</p>
+<p>return self.diff</p>
+<p>调用timer.py</p>
+<p>from timer import Timer</p>
+<p>timer=Timer()</p>
+<p>timer.tic()</p>
+<p>其他代码</p>
+<p>timer.toc()</p>
+<p>print (timer.total_time)</p>
+
+
+<hr />
 <p>小白。勿念。</p>
 
 <hr />
