@@ -397,6 +397,89 @@
 
 
 <hr />
+
+<p>非极大值抑制：</p>
+<p>import numpy as np</p>
+<p>def py_cpu_nms(dets, thresh):</p>
+<p>    x1 = dets[:, 0]</p>
+<p>    y1 = dets[:, 1]</p>
+<p>    x2 = dets[:, 2]</p>
+<p>    y2 = dets[:, 3]</p>
+<p>    scores = dets[:, 4]</p>
+<p>    areas = (x2 - x1 + 1) * (y2 - y1 + 1)</p>
+<p>    order = scores.argsort()[::-1]</p>
+<p>    keep = []</p>
+<p>    while order.size > 0:</p>
+<p>        i = order[0]</p>
+<p>        keep.append(i)</p>
+<p>        xx1 = np.maximum(x1[i], x1[order[1:]])</p>
+<p>        yy1 = np.maximum(y1[i], y1[order[1:]])</p>
+<p>        xx2 = np.minimum(x2[i], x2[order[1:]])</p>
+<p>        yy2 = np.minimum(y2[i], y2[order[1:]])</p>
+<p>        w = np.maximum(0.0, xx2 - xx1 + 1)</p>
+<p>        h = np.maximum(0.0, yy2 - yy1 + 1)</p>
+<p>        inter = w * h</p>
+<p>        ovr = inter / (areas[i] + areas[order[1:]] - inter)</p>
+<p>        inds = np.where(ovr <= thresh)[0]</p>
+<p>        order = order[inds + 1]</p>
+<p>    return keep</p>
+<p>注：最后的order = order[inds + 1]，因为前面有了i = order[0]，inds是从0开始，则从inds到order需要+1</p>
+
+<hr />
+
+<p>np.vstack(tup)使用,沿着竖直方向将矩阵堆叠起来。 </p>
+<p>Note: the arrays must have the same shape along all but the first axis. 除开第一维外，被堆叠的矩阵各维度要一致。</p>
+<p>import numpy as np</p>
+<p>arr1 = np.array([1, 2, 3])</p>
+<p>arr2 = np.array([4, 5, 6])</p>
+<p>res = np.vstack((arr1, arr2))</p>
+<p>结果如下array([[1, 2, 3],[4, 5, 6]])</p>
+<p>np.hstack(tup)沿着水平方向将数组堆叠起来。</p>
+
+<hr />
+
+<p>来自https://conda.io/miniconda.html，https://conda.io/docs/install/quick.html#windows-miniconda-install</p>
+<p>conda 30-minute test drive</p>
+<p>--help：see the full documentation for any command，conda update --help</p>
+<p>conda --version</p>
+<p>conda update conda</p>
+<p>Create and activate an environment：conda create --name snowflakes biopython，activate snowflakes</p>
+<p>conda info --envs</p>
+<p>deactivate：To change your path from the current environment back to the root</p>
+<p>conda create --name flowers --clone snowflakes：Make an exact copy of an environment</p>
+<p>conda remove --name flowers --all：Delete an environment</p>
+<p>conda search --full-name python： check to see which versions of Python are available to install</p>
+<p>conda create --name snakes python=3，activate snakes：Install a different version of Python</p>
+<p>python --version</p>
+<p>conda list：View a list of packages and versions installed in an environment</p>
+<p>conda search beautifulsoup4：Search for a package</p>
+<p>conda install --name bunnies beautifulsoup4：Install a new package</p>
+<p>conda install --channel https://conda.anaconda.org/pandas bottleneck：Install a package from Anaconda.org</p>
+<p>pip install see：Install a package with pip</p>
+<p>conda install iopro：Install commercial package</p>
+<p>conda remove --name bunnies iopro：Remove a package</p>
+<p>conda remove --name snakes --all：Remove an environment</p>
+
+
+<hr />
+
+<p>Our default CaffeNet is configured to take images in BGR format. Values are expected to start in the range [0, 255] and then have the mean ImageNet pixel value subtracted from them. In addition, the channel dimension is expected as the first (outermost) dimension.</p>
+<p>As matplotlib will load images with values in the range [0, 1] in RGB format with the channel as the innermost dimension, we are arranging for the needed transformations here.</p>
+<p># load the mean ImageNet image (as distributed with Caffe) for subtraction</p>
+<p>mu = np.load(caffe_root + 'python/caffe/imagenet/ilsvrc_2012_mean.npy')</p>
+<p>mu = mu.mean(1).mean(1)  # average over pixels to obtain the mean (BGR) pixel values</p>
+<p>print 'mean-subtracted values:', zip('BGR', mu)</p>
+
+<p># create transformer for the input called 'data'</p>
+<p>transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})</p>
+
+<p>transformer.set_transpose('data', (2,0,1))  # move image channels to outermost dimension</p>
+<p>transformer.set_mean('data', mu)            # subtract the dataset-mean value in each channel</p>
+<p>transformer.set_raw_scale('data', 255)      # rescale from [0, 1] to [0, 255]</p>
+<p>transformer.set_channel_swap('data', (2,1,0))  # swap channels from RGB to BGR</p>
+
+<hr />
+
 <p>小白。勿念。</p>
 
 <hr />

@@ -79,6 +79,7 @@
 <p>caffe的Python接口用draw_net.py绘制网络结构图：</p>
 <p>先给Python安装相关工具：pip install protobuf/pydot/GraphViz，conda install --yes scikit-image scipy numpy;</p>
 <p>再切到pycaffe路径：python draw_net.py lenet.prototxt net.bmp --rankdir=LR</p>
+<p>draw_net.py执行的时候带三个参数 ,第一个参数：网络模型的prototxt文件,第二个参数：保存的图片路径及名字 ,第三个参数：–rankdir=x , x 有四种选项，分别是LR, RL, TB, BT 。用来表示网络的方向，分别是从左到右，从右到左，从上到小，从下到上。默认为LR。</p>
 
 <hr />
 
@@ -105,7 +106,7 @@
 
 <hr />
 
-<p>caffe for python 官方教程：</p>
+<p>caffe for python 官方教程：Classification: Instant Recognition with Caffe</p>
 <p>（1）安装python,numpy,matplotlib,设置默认显示参数：</p>
 <p>import numpy as np</p>
 <p>import matplotlib.pyplot as plt</p>
@@ -117,6 +118,7 @@
 <p>caffe_root='../'</p>
 <p>#sys.path.insert(0,caffe_root+'python'</p>
 <p>import caffe</p>
+<p># If you get "No module named _caffe", either you have not built pycaffe or you have the wrong path.</p>
 <p>(3)下载CaffeNet模型：</p>
 <p>import os</p>
 <p>if os.path.isfile(caffe_root+'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'):</p>
@@ -128,15 +130,15 @@
 <p>model_def=caffe_root+'models/bvlc_reference_caffenet/deploy.prototxt'</p>
 <p>model_weights=caffe_root+'models/bvlc_reference_net/bvlc_reference_net.caffemodel'</p>
 <p>net=caffe.Net(model_def,model_weights,caffe.TEST)</p>
-<p>(5)输入预处理，caffenet默认输入：BGR，[0,255]，且减去ImageNet平均值，通道维数为outermost。matplotlib加载图像：[0,1],RGB,通道维数为innermost：</p>
+<p>(5)输入预处理，caffenet默认输入：BGR，[0,255]，且减去ImageNet平均值，通道维数为first (outermost) dimension。matplotlib加载图像：[0,1],RGB,通道维数为innermost：</p>
 <p>mu=np.load(caffe_root+'python/caffe/imagenet/ilsvrc_2012_mean.npy')</p>
 <p>mu=mu.mean(1).mean(1)</p>
 <p>print 'mean-subtracted values:',zip('BGR',mu)</p>
 <p>trasnformer=caffe.io.Transformer({'data':net.blobs['data'].data.shape})</p>
-<p>transformer.set_mean('data',mu)</p>
-<p>transformer.set_transpose('data',(2,0,1))</p>
-<p>transformer.set_raw_scale('data',255)</p>
-<p>transformer.set_channel_swap('data',(2,1,0))</p>
+<p>transformer.set_mean('data',mu) # subtract the dataset-mean value in each channel</p>
+<p>transformer.set_transpose('data',(2,0,1)) # move image channels to outermost dimension</p>
+<p>transformer.set_raw_scale('data',255) # rescale from [0, 1] to [0, 255]</p>
+<p>transformer.set_channel_swap('data',(2,1,0)) # swap channels from RGB to BGR</p>
 <p>(6)设置图像大小，加载图像并预处理</p>
 <p>net.blobs['data'].reshape(50,3,227,227)</p>
 <p>image=caffe.io.load_image(caffe_root+'examples/images/cat.jpg')</p>
@@ -183,7 +185,38 @@
 
 <hr />
 
+<p>https://github.com/Microsoft/caffe</p>
+<p>微软官方caffe安装</p>
+<p>下载解压Caffe官方网址 https://github.com/Microsoft/caffe</p>
+<p>安装Python。下载合适版本的Miniconda，安装时选择Installfor all users and add python to PATH (会自动将Python路径添加到系统变量里)，安装后在命令行执行如下命令：conda install --yes numpy scipy matplotlib scikit-imagepip，pip install protobuf。注：caffe编译后，在环境变量中设置PythonPath变量，值指向caffe_root\Build\x64\Release\pycaffe</p>
+<p>安装MATLAB。在caffe编译后，把生成的matcaffe 文件夹路径添加到MATLAB搜索路径上，把caffe_root\Build\x64\Release 添加到系统路径里。</p>
+<p>将.\windows\CommonSettings.props.example文件名修改为.\windows\CommonSettings.props，修改相应内容。</p>
+<p>使用Visual Studio2013打开.\windows\Caffe.sln,右击libcaffe->重新生成，第三库自动下载安装。</p>
+<p>其他问题：</p>
+<p>编译过程中提示：无法打开包括文件: “gpu/mxGPUArray.h”: No such file or directory”，CommonSettings.props里Matlab中添加了一条$(MatlabDir)\toolbox\distcomp\gpu\extern\include;</p>
+<p>编译过程会提示error C2220: 警告被视为错误 - 没有生成“object”文件，右击选择属性->配置属性->c/c++->常规，将“警告视为错误”的选项改为“否”。</p>
+<p>运行caffe.cpp，直接双击打开caffe.cpp，然后ctrl+f5直接编译，运行后出现相关命令窗口</p>
 
+
+<hr />
+
+<p>Google Protocol Buffer 的使用和原理:http://blog.csdn.net/whiteinblue/article/details/45330761</p>
+<p>Google Protocol Buffer( 简称 Protobuf) 是 Google 公司内部的混合语言数据标准，目前已经正在使用的有超过 48,162 种报文格式定义和超过 12,183 个 .proto 文件。他们用于 RPC 系统和持续数据存储系统。Protocol Buffers 是一种轻便高效的结构化数据存储格式，可以用于结构化数据串行化，或者说序列化。它很适合做数据存储或 RPC 数据交换格式。可用于通讯协议、数据存储等领域的语言无关、平台无关、可扩展的序列化结构数据格式。目前提供了 C++、Java、python 三种语言的 API。</p>
+
+<hr />
+
+<p>Caffe2</p>
+<p>https://github.com/caffe2</p>
+<p>http://caffe2.ai </p>
+
+
+
+<hr />
+
+<p>caffe python layer</p>
+<p>http://blog.csdn.net/thesby/article/details/51264439</p>
+
+<hr />
 
 <p>小白。勿念。</p>
 
