@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Jupyter" />
+    <meta name="description" content="Jupyter" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>小志同学 - Jupyter</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/sunburst.min.css" />
+    <link rel="stylesheet/less" href="/homepage/assets/style/style.less" />
+    <script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+</head>
+<body>
+<script>
+    var pageData = {};
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?6b9830e6ab8073ce1a44ad49a03d8596';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<img src="http://oij8a9ql4.bkt.clouddn.com/portrait.jpg" alt="小志同学" width="0" height="0" />
+<nav>
+    <a href="javascript:;" class="js_menu_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <ul class="js_menu">
+        <li><a href="/homepage/">Home</a></li>
+        <li><a href="/homepage/views/posts" class="js_goto_posts">Posts</a></li>
+        <li><a href="/homepage/views/about">About</a></li>
+    </ul>
+</nav>
+<a href="javascript:;" class="gotop js_gotop"></a>
+<header class="post" style="background-image: url('http://oij8a9ql4.bkt.clouddn.com/banner.jpg')">
+    <div>
+        <h2>Jupyter</h2>
+        <time>20 Jul 2017</time>
+        <p class="abstract">Jupyter</p>
+        <ul class="c-fix">
+            
+                    <li>Python</li>
+
+                    <li>Jupyter notebook</li>
+
+
+            
+        </ul>
+    </div>
+</header>
+<article class="js_article">
+
+
+<hr />
+
+<p>参考自：https://www.packtpub.com/books/content/getting-started-jupyter-notebook-part-1</p>
+<p>Jupyter Notebook（此前被称为 IPython notebook）是一个交互式笔记本，支持运行 40 多种编程语言。</p>
+<p>Jupyter notebook的本质是一个Web应用程序，便于创建和共享文学化程序文档，支持实时代码，数学方程，可视化和 markdown。 用途包括：数据清理和转换，数值模拟，统计建模，机器学习等等。</p>
+<p>Jupyter Notebook 入门：</p>
+<p>安装：pip install jupyter</p>
+<p>打开：jupyter notebook，在开启 notebook 的文件夹中启动 Jupyter 主界面</p>
+<p>新建一个 notebook，点击New，选择希望启动的 notebook 类型，只有Python 内核，运行一个 Python notebook</p>
+<p>notebook 界面由以下部分组成：notebook 的名称；主工具栏，提供了保存、导出、重载 notebook，以及重启内核等选项；快捷键；notebook 主要区域，包含了 notebook 的内容编辑区。</p>
+<p>下方的主要区域，由被称为单元格的部分组成。每个 notebook 由多个单元格构成，而每个单元格又可以有不同的用途。</p>
+<p>代码单元格（code cell），以[ ]开头。在这种类型的单元格中，可以输入任意代码并执行。例如，输入1 + 2并按下Shift + Enter。之后，单元格中的代码就会被计算，光标也会被移动动一个新的单元格中。</p>
+<p>notebook 特性，可以修改之前的单元格，对其重新计算，这样就可以更新整个文档了。把光标移回第一个单元格，并将1 + 2修改成2 + 3，然后按下Shift + Enter重新计算该单元格。</p>
+<p>使用其他类型的单元格，即 Header单元格和 Markdown单元格。</p>
+<p>首先，在顶部添加一个 notebook 的标题。选中第一个单元格，然后点击Insert -> Insert单元格above（在上方插入单元格）。文档的顶部出现一个新的单元格。点击在快捷键栏中的单元格类型，将其变成一个标题单元格（heading cell）：这个单元格以#标记开头，意味着这是一个一级标题。</p>
+<p>添加好标题之后，编写一些解释，介绍每个代码单元格中的情况。为此，在相应的地方插入单元格，然后将其类型变成 Markdown。然后，计算新的单元格。就这样，解释文本就渲染出来！</p>
+<p>重命名该 notebook，点击Fiel -> Rename，然后输入新的名称。这样，新的名称将会出现在窗口的左上角，在 Jupyter 的标志旁边。</p>
+<p>单元格操作：edit 删除、剪切、移动、合并</p>
+<p>Markdown 单元格高级用法：类型是 markdown，但是这类单元格也接受 HTML 代码。就可以在单元格类实现更加丰富的样式，添加图片，等等。</p>
+<p>markdown 单元格还支持 LaTex 语法。</p>
+<p>notebook 还有一个强大的特性，就是其导出功能。可以将 notebook 导出为多种格式。</p>
+<p>Matplotlib 集成：例如%matplotlib inline，import matplotlib.pyplot as plt，import numpy as np，x = np.arange(20)，y = x**2，plt.plot(x, y)。绘制出的图形直接添加在了 notebook 中，就在代码的下面。之后修改代码，重新计算，这时图形也会动态更新。这是每个数据科学家都想要的一个特性：将代码和图片放在同一个文件中，清楚地看出每段代码的效果。</p>
+<p>非本地内核：在一台电脑上启动 Jupyter，而且支持多人通过网络连接同一个 Jupyter 实例。The Jupyter Notebook is running at: http://localhost:8888/，notebook 是本地运行的。修改下配置，让该 notebook 可以被公开访问。这样，任何知道 notebook 地址的人都可以连接到 notebook 进行远程修改。</p>
+<hr />
+<p>http://blog.csdn.net/tina_ttl/article/details/51031113 Python·Jupyter Notebook各种使用方法记录·持续更新</p>
+<p>Jupyter的工作空间在哪里指定?在其配置文件ipython_notebook_config.py中.</p>
+<p>Jupyter的各种快捷键:</p>
+<p>执行当前cell，并自动跳到下一个cell：Shift Enter</p>
+<p>执行当前cell，执行后不自动调转到下一个cell：Ctrl-Enter</p>
+<p>是当前的cell进入编辑模式：Enter</p>
+<p>退出当前cell的编辑模式：Esc</p>
+<p>删除当前的cell：双D</p>
+<p>为当前的cell加入line number：单L</p>
+<p>将当前的cell转化为具有一级标题的maskdown：单1</p>
+<p>将当前的cell转化为具有二级标题的maskdown：单2</p>
+<p>为一行或者多行添加/取消注释：Crtl /</p>
+<p>撤销对某个cell的删除：z</p>
+<p>浏览器的各个Tab之间切换：Crtl PgUp和Crtl PgDn</p>
+<p>快速跳转到首个cell：Crtl Home</p>
+<p>快速跳转到最后一个cell：Crtl End</p>
+<p>Jupyter Notebook如何导入代码?</p>
+<p>将本地的.py文件load到jupyter的一个cell中:在需要导入该段代码的cell中输入%load test.py #test.py是当前路径下的一个python文件,利用快捷键“Shift+Enter”运行该cell 。运行后，%load test.py被自动加入了注释符号#，test.py中的所有代码都被load到了当前的cell中。</p>
+<p>Jupyter运行python文件：利用jupyter的cell是可以运行python文件的，即在cell中运行如下代码：%run file.py</p>
+<p>jupyter的cell可以作为unix command使用：查看python版本：!python --version </p>
+<p>获取current working directory：current_path = %pwd，这样得到的current_path就是当前工作路径。</p>
+<p>使用Matplotlib绘图：在Jupyter Notebook中，如果使用Matplotlib绘图，有时是弹不出图像框的，此时，可以在开头加入%matplotlib inline</p>
+<p>Jupyter中的Markdown：http://blog.leanote.com/post/freewalk/Markdown-语法手册</p>
+<p>在jupyter中设置link</p>
+<p>为Jupyter Notebook添加目录功能</p>
+
+
+<hr />
+
+
+
+<p>作者：无名氏。</p>
+
+
+
+</article>
+<footer>
+    <a href="/homepage/views/posts" class="js_goto_posts">返回目录 - 痕迹</a>
+</footer>
+<div class="browser js_browser">
+    <img src="" />
+</div>
+
+<script src="/homepage/assets/script/main.js"></script>
+</body>
+</html>
