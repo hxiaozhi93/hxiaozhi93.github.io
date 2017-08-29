@@ -84,6 +84,17 @@
 
 <hr />
 
+<p>在windows下测试mnist和lenet：</p>
+<p>训练：Build\x64\Release\caffe.exe train --solver=examples/mnist/lenet_solver.prototxt</p>
+<p>只做测试：Build\x64\Release\caffe.exe test -model examples/mnist/lenet_train_test.prototxt -weights examples/mnist/lenet_iter_1000.caffemodel -iterations 100</p>
+<p>恢复训练：Build\x64\Release\caffe.exe train --solver=example/mnist/lenet_solver.prototxt -snapshot examples/mnist/lenet_iter_1000.solverstate</p>
+<p>求均值：Build\x64\Release\compute_image_mean.exe examples\mnist\mnist_train_leveldb mean.biaryproto --backend=leveldb</p>
+<p>测试自己的手写数字(1)：打开画图软件，调整大小28*28（或者matlab中的resize），写一个数字，其为白底黑字。再用matlab转格式，image=imread('text.png');image=255-rgb2gray(image);imwrite('uint8(image)','./text.bmp');</p>
+<p>测试自己的手写数字(2)：Build\x64\Release\classification.exe examples/mnist/lenet.prototxt examples/mnist/lenet_iter_1000.caffemodel mean.binary examples/mnist/label.txt examples/mnist/text.bmp</p>
+<p></p>
+
+<hr />
+
 <p>caffe的Python接口用draw_net.py绘制网络结构图：</p>
 <p>先给Python安装相关工具：pip install protobuf/pydot/GraphViz，conda install --yes scikit-image scipy numpy;</p>
 <p>再切到pycaffe路径：python draw_net.py lenet.prototxt net.bmp --rankdir=LR</p>
