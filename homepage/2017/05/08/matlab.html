@@ -90,6 +90,24 @@
 <p>M 文件，以.m 为扩展名，所以称为M 文件。M文件是由一系列MATLAB语句组成的文件，包括命令文件和函数文件两类，命令文件类似于其他高级语言中的主程序或主函数，而函数文件则类似于子程序或被调函数。数据文件，以.mat 为扩展名，所以又称MAT文件。在讨论工作空间窗口时已经涉及到MAT文件。显然，数据文件保存了MATLAB工作空间窗口中变量的数据。图形文件，以.fig 为扩展名。主要由MATLAB 的绘图命令产生，当然也可用File菜单中的New命令建立。MEX 文件，以.mex 或.dll 为扩展名，所以称MEX 文件。MEX 实际是由MATLAB Executable 缩写而成的，由此可见，MEX 文件是MATLAB 的可执行文件。模型和仿真文件，模型文件以.mdl为扩展名，由Simulink仿真工具箱在建立各种仿真模型时产生。仿真文件以.s 为扩展名。</p>
 <p>a=[1 3 5 2 4];plot(a,'*');axis([0 6 0 6]);grid on;hold on;xlabel('xxx');ylabel('yyy');bar(a);</p>
 <hr />
+<p>MATLAB中的函数句柄及其应用:http://www.cnblogs.com/heleifz/p/matlab-function-handle.html</p>
+<p>函数句柄(function handle)是MATLAB中的一类特殊的数据结构，它的地位类似于其它计算机语言里的函数对象(Javascript,Python)，函数指针(C++)，或者函数引用(Perl)。作用是将一个函数封装成一个变量，使其能够像其它变量一样在程序的不同部分传递。函数句柄的创建；</p>
+<p>（1）语法：@函数名</p>
+<p>（2）语法：str2fun('函数名')</p>
+<p>（3）语法：@(参数列表)单行表达式</p>
+
+<hr />
+<p>Faster RCNN的Matlab code，一些 matlab技巧:http://www.cnblogs.com/wangxiaocvpr/p/5723312.html</p>
+<p>The inputParser object allows you to manage inputs to a function by creating an input scheme.</p>
+<p>assert： Generate an error when a condition is violated. assert(EXPRESSION, ERRMSG) evaluates EXPRESSION and, if it is false, displays the string contained in ERRMSG. When ERRMSG is the last input to assert, MATLAB displays it literally, without performing any substitutions on the characters in ERRMSG.</p>
+<p>permute 函数：Permute array dimensions.B = permute(A,ORDER) rearranges the dimensions of A so that they are in the order specified by the vector ORDER.</p>
+<p>cellfun: Apply a function to each cell of a cell array. A = cellfun(FUN, C) applies the function specified by FUN to the contents of each cell of cell array C, and returns the results in the array A.</p>
+<p>matlab中的containers.Map()有点类似于C++ STL中的map容器，具有key/value映射的功能. myMap = containers.Map(KEYS, VALUES) constructs a Map object myMap that contains one or more keys and a value for each of these keys, as specified in the KEYS and VALUES arguments.</p>
+<p>Divided the image into specific patches using matlab function: mat2cell</p>
+<p>Read images from disks and save these frames into avi video files.</p>
+<p>try...end用于尝试运行一段也许可能出错的代码。try...catch...end用于检查错误，若try中有错，则执行catch中语句。</p>
+
+<hr />
 
 
 <p>小白。勿念。</p>
